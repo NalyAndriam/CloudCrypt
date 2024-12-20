@@ -1,0 +1,30 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# config/routes.yaml
+inscription:
+    path: /inscription
+    controller: App\Controller\InscriptionController::createInscription
+    methods: POST
+
+# config/routes.yaml
+inscription_validation:
+    path: /inscription/validation/{idInscription}
+    controller: App\Controller\InscriptionController::validateInscription
+    methods: [GET]
+
+# routes.yaml
+login:
+    path: /login
+    controller: App\Controller\UtilisateurController::login
+    methods: [POST]
+
+validate_pin:
+    path: /login/validatePin
+    controller: App\Controller\UtilisateurController::validatePin
+    methods: GET
+
+

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Service PHP/Symfony
+  web:
+    build: .
+    container_name: symfony_app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=dev
+      - DATABASE_URL=postgresql://cloud:itu16@db/cloud
+    depends_on:
+      - db
+
+  # Service de base de données PostgreSQL
+  db:
+    image: postgres:15.3
+    container_name: symfony_db
+    environment:
+      POSTGRES_DB: cloud
+      POSTGRES_USER: cloud
+      POSTGRES_PASSWORD: itu16
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
